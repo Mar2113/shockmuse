@@ -1,0 +1,658 @@
+@font-face {
+	font-family: 'CustomFont1';
+	src: url(../fonts/Lato/Lato-Black.ttf);
+}
+
+@font-face {
+	font-family: 'CustomFont2';
+	src: url(../fonts/Lato/Lato-Bold.ttf);
+}
+
+@font-face {
+	font-family: 'CustomFont3';
+	src: url(../fonts/Lato/Lato-Light.ttf);
+}
+
+@font-face {
+	font-family: 'CustomFont4';
+	src: url(../fonts/Lato/Lato-Regular.ttf);
+}
+
+@font-face {
+	font-family: 'CustomFont5';
+	src: url(../fonts/Lato/Lato-Thin.ttf);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	font-family: 'CustomFont4';
+	background-color: white;
+}
+
+body a {
+	text-decoration: none;
+}
+
+/* #################################################    HEADER */
+
+header {
+	font-family: 'CustomFont1';
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	background-color: #444;
+	color: white;
+	position: sticky;
+	top: 0;
+	z-index: 999;
+	width: 100%;
+	height: calc(6vh + 40px);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+	/* Sombreado en la parte inferior */
+}
+
+
+
+.breadcrumbHeader {
+	position: absolute;
+	color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	margin-left: 30px;
+	height: 100%;
+	width: auto;
+}
+
+.menu-icon {
+	margin-right: auto;
+	padding-right: 10px;
+	cursor: pointer;
+}
+
+.search-container {
+	font-family: 'CustomFont4';
+	display: flex;
+	align-items: center;
+}
+
+.search-container input[type="text"] {
+	/* padding: 5px; */
+	border-radius: 5px;
+	border: none;
+	margin-right: 15px;
+	padding-left: 10px;
+}
+
+.search-icon {
+	/* margin-left: 10px; */
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+	width: 36px;
+	height: 30px;
+	cursor: pointer;
+	border-radius: 3px;
+	padding-bottom: 3px;
+}
+
+.search-icon:hover {
+	border-bottom: solid 3px #fff;
+	padding-bottom: 0px;
+}
+
+/* ################################################################s */
+
+
+#sidebar {
+	padding-top: 15px;
+	font-family: 'CustomFont4';
+	height: calc(94vh - 20px);
+	position: fixed;
+	left: -100%;
+	bottom: 0;
+	width: 200px;
+	background-color: #444;
+	transition: left 0.5s ease;
+	z-index: 998;
+	color: #fff;
+	box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.2);
+	overflow-y: auto;
+}
+
+.main-nav {
+	color: #fff;
+}
+
+.nav-item {
+	padding: 10px 0;
+}
+
+.dropdown-list {
+	display: none;
+	padding-left: 20px;
+}
+
+.dropdown-list .nav-item {
+	padding: 5px 0;
+}
+
+.active {
+	background-color: #555;
+}
+
+.hide {
+	display: none;
+}
+
+/* Estilos del menú */
+.menu {
+	width: 100%;
+	background-color: #444;
+}
+
+.menu-item {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.menu-item a {
+	display: block;
+	padding: 10px 0px 10px 20px;
+	text-decoration: none;
+	color: #fff;
+}
+
+.menu-item a:hover {
+	background-color: #c1c1c1;
+	color: #444;
+	font-family: 'CustomFont4';
+}
+
+.submenu {
+	display: none;
+	padding-left: 10px;
+}
+
+.submenu-item a {
+	color: #fff;
+	padding: 10px 0px 10px 20px;
+	/* Aplica CustomFont1 a los enlaces de submenú */
+}
+
+.menu-item.active .submenu {
+	display: block;
+}
+
+/* ########################################### */
+
+.imagenFondo {
+	max-height: 429px;
+	width: 100%;
+	object-fit: cover;
+}
+
+/* ############################################ TARJETA MUSICA */
+
+.content-featured {
+    display: flex;
+    padding: 20px;
+    height: calc(100% + 110px);
+    overflow: auto;
+    margin-bottom: 115px;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.music-card {
+	height: 250px;
+	width: 250px;
+	margin: 20px;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.music-card .card-image {
+	height: calc(100% - 60px);
+	overflow: hidden;
+}
+
+.music-card img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.music-card:hover img {
+	transform: scale(1.1);
+}
+
+.music-card .card-content {
+	height: 60px;
+	padding: 10px;
+	text-align: center;
+	background-color: white;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	/* Center vertically */
+	justify-content: center;
+	/* Center horizontally */
+	flex-direction: column;
+	/* Ensures children are stacked vertically */
+}
+
+.music-card .card-title {
+	font-size: 18px;
+	font-family: 'CustomFont2';
+}
+
+.music-card .card-subtitle {
+	font-size: 14px;
+	color: #666;
+	font-family: 'CustomFont4';
+}
+
+/* ################################################################     FOOTER */
+
+
+footer a {
+	color: white;
+}
+
+footer {
+    position: fixed; /* Fija el footer en la parte inferior */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 95px;
+    padding: 10px;
+    background-color: #444;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.footer-div {
+	height: 30px;
+	flex: 1;
+	display: flex;
+	align-items: center;
+	/* Centrar verticalmente */
+	justify-content: center;
+	/* Centrar horizontalmente */
+	margin: 10px;
+}
+
+.footer-div svg {
+	margin: 0 10px;
+	cursor: pointer;
+}
+
+
+
+
+/* ################################################# */
+
+.form-control{
+	width: 100px;
+	padding: 10px;
+	border: solid thin #ccc;
+}
+
+/* Estilo para el formulario y sus elementos */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para los campos de entrada */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Estilo para el botón */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Estilo específico para el botón con clase bg-blue */
+.bg-blue {
+    background-color: #007bff;
+	color: white;
+}
+
+/* Efecto hover para el botón */
+.bg-blue:hover {
+    background-color: #0056b3;
+
+}
+
+
+/* ############################################# */
+
+.contenedorTituloListaUsuarios{
+	width: 100%;
+	height: calc(100% - 60px);
+}
+
+.user-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Ajusta según sea necesario */
+}
+
+.add-button, .buttonAddUser {
+    background-color: #007bff; /* Color azul */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-button a {
+    color: white;
+    text-decoration: none;
+}
+
+.add-button:hover, .buttonAddUser:hover {
+    background-color: #0056b3; /* Color azul más oscuro al pasar el ratón */
+}
+
+/* Estilos para las filas impares */
+.table tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Cambia el color de fondo para las filas impares */
+}
+
+.contenedorListaUsuarios{
+	height: auto;
+	/* max-height: 50% !important; */
+	width: 100%;
+	height: calc(100% - 100px);
+    border: solid thin #444;
+	overflow-y: auto; /* Agrega scroll automático si el contenido desborda */
+	overflow-x: auto;
+}
+
+.table thead {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1;
+}
+.table tbody {
+    background-color: #fff;
+    z-index: 0;
+}
+
+.table-container {
+    overflow-y: auto; /* Agrega desplazamiento vertical si el contenido desborda */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: solid thin #ccc;
+    padding: 5px 10px;
+}
+
+.table th {
+    background-color: #444;
+    color: white;
+	overflow-x: auto;
+}
+
+.table .columnaCorreo, 
+.table .columnaNombre {
+	max-width: 180px;
+}
+
+.table .sortable{
+	color: #444;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 0;
+}
+
+.listaUsuariosAcciones {
+    height: 100%;
+    width: 80px;
+}
+
+
+
+
+
+/* #############################################		FORM */
+
+.form-container {
+	/* width: 50%;
+	margin: 0 auto; */
+	min-height: 470px;
+	max-height: auto;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 5px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h3 {
+	text-align: center;
+	margin-bottom: 20px;
+	font-size: 24px;
+}
+
+.form-control {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-sizing: border-box;
+}
+
+.button-group-adduser{
+	display: flex;
+	flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.error {
+	color: red;
+	font-size: 14px;
+}
+
+.btn {
+	display: inline-block;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 3px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.bg-orange {
+	background-color: orange;
+	color: white;
+}
+
+.float-end {
+	float: right;
+}
+
+
+/* ####################################### */
+
+.error {
+    display: block;
+    margin-top: 5px;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: .75rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.error.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* #######################################			ALERTS */
+
+.alert {
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+
+/* ######################################################## */
+
+/* Estilos para el cuadro de diálogo de confirmación */
+.confirmation-dialog {
+    display: none; /* Por defecto, el cuadro de diálogo está oculto */
+    position: fixed; /* Lo posiciona en relación al viewport */
+    top: 0; /* Alinea el cuadro de diálogo en la parte superior del viewport */
+    left: 0; /* Alinea el cuadro de diálogo en la parte izquierda del viewport */
+    width: 100%; /* Ocupa el 100% del ancho del viewport */
+    height: 100%; /* Ocupa el 100% de la altura del viewport */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 1; /* Asegura que el cuadro de diálogo esté por encima de otros elementos */
+}
+
+.confirmation-dialog-content {
+    background-color: #fff; /* Fondo blanco para el contenido del cuadro de diálogo */
+    width: 400px; /* Ancho del cuadro de diálogo */
+    margin: auto; /* Centra el cuadro de diálogo horizontalmente */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+.confirmation-dialog-buttons {
+    text-align: center; /* Centra los botones horizontalmente */
+    margin-top: 20px; /* Espaciado superior entre los botones y el contenido */
+}
+
+/* Estilos para los botones */
+.confirmation-dialog-buttons button {
+    padding: 10px 20px; /* Espaciado interno */
+    margin: 0 10px; /* Espaciado entre los botones */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #007bff; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+}
+
+.confirmation-dialog-buttons button:hover {
+    background-color: #0056b3; /* Cambia el color de fondo al pasar por encima */
+}
+
+.button-group-adduser {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.mx-2 {
+    margin-right: .5rem !important;
+    margin-left: .5rem !important;
+	display: flex;
+    flex-direction: row;
+    min-width: 200px;
+    justify-content: space-between;
+}
+
+
+
+/* #####################################################################		CANCIONEs */
+.audio-container {
+    width: 100%;
+    margin-top: 15px;
+}
+
+audio {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+    padding: 10px;
+    outline: none;
+}
+
+audio::-webkit-media-controls-panel {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+audio::-webkit-media-controls-play-button {
+    color: #007bff;
+}
+
+audio::-webkit-media-controls-volume-slider {
+    display: none;
+}
+
+

@@ -1,0 +1,492 @@
+ /* Estilos para el cuerpo de la página */
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #121212;
+    /* Color del texto */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Asegura que el cuerpo ocupe al menos el 100% de la altura de la ventana */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+.header-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Alinea horizontal y verticalmente */
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Segoe UI';
+}
+
+.header-center {
+    flex: 3;
+    /* Cambiamos el ancho a flex */
+    display: flex;
+    justify-content: center;
+    /* Centramos los elementos horizontalmente */
+    align-items: center;
+    /* Centramos los elementos verticalmente */
+}
+
+#searchInput {
+    font-size: 1.5em;
+    width: 300px;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    #searchInput {
+        width: 200px;
+        /* Ancho más estrecho para pantallas medianas */
+    }
+}
+
+@media (max-width: 480px) {
+    #searchInput {
+        width: 150px;
+        /* Ancho más estrecho para pantallas pequeñas */
+    }
+}
+
+.search-button {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.header-right {
+    flex: 1;
+    /* Cambiamos el ancho a flex */
+    display: flex;
+    justify-content: flex-end;
+}
+
+#titleSup {
+    padding: 20px;
+}
+
+
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #333;
+    color: white;
+    position: fixed;
+    /* Fijar el footer */
+    width: 100%;
+    bottom: 0;
+    /* Pegar el footer en la parte inferior */
+}
+
+body {
+    font-family: 'Segoe UI';
+    background-color: #f0f0f0;
+    /* Color de fondo */
+    color: #121212;
+    /* Color del texto */
+    margin: 0;
+    padding: 0;
+}
+
+aside {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 400px;
+    /* Ancho inicial del aside */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    /* Bordes redondeados */
+    overflow-y: auto;
+    /* Para habilitar el desplazamiento vertical si el contenido es demasiado largo */
+    z-index: 3;
+}
+
+/* Media query para pantallas más estrechas */
+@media (max-width: 768px) {
+    aside {
+        width: 100%;
+        /* El aside ocupa el 100% del ancho en pantallas estrechas */
+    }
+}
+
+.logotype {
+    position: relative;
+    max-width: 100%;
+    max-height: 200px;
+    margin-top: 20px;
+    /* Centrar vertical y horizontalmente */
+}
+
+#registerBtn {
+    font-family: 'Segoe UI';
+    background-color: #fff;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    /* Espacio de 20px desde el borde derecho */
+
+}
+
+#registerBtn:hover {
+    content: attr(aria-label);
+    background-color: #f0f0f0;
+    /* Cambia el color de fondo al pasar el ratón sobre el botón */
+}
+
+.login-auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-auth-wrapper {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-auth-wrapper h3 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2em;
+}
+
+.login-social-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.social-btn {
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.social-btn i {
+    margin-right: 10px;
+}
+
+.social-btn.btn-fb {
+    background-color: #3b5998;
+    color: #fff;
+}
+
+.social-btn.btn-apple {
+    background-color: #000;
+    color: #fff;
+}
+
+.social-btn.btn-google {
+    background-color: #db4437;
+    color: #fff;
+}
+
+.social-btn:hover {
+    background-color: #ddd;
+}
+
+.separator {
+    width: 100%;
+    margin: 20px 0;
+    border-bottom: solid 1px #ccc;
+    opacity: 0.5;
+    text-align: center;
+    /* Alineación del texto al centro */
+}
+
+.login-auth-form {
+    background-color: #fff;
+    padding: 40px;
+    width: 300px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.form-steps {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-steps .link {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.form-steps .link:hover {
+    color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 20px;
+}
+
+.form-action {
+    text-align: center;
+}
+
+.form-action .login {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+.form-action .login:hover {
+    background-color: #0056b3;
+}
+
+
+#closeAside {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+    margin: 0 5px;
+    transition: transform 0.3s ease;
+    /* Transición suave para el cambio de escala */
+}
+
+#closeAside:hover {
+    color: #007bff;
+    transform: scale(1.3);
+    /* Aumentar la escala al pasar el ratón */
+}
+
+.login-auth-page img {
+    max-width: calc(100% - 20px);
+    /* El ancho máximo será el ancho del aside menos 20px de margen en cada lado */
+    margin: 0 10px;
+    /* 10px de margen en cada lado */
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permitir que los elementos se envuelvan en filas */
+    justify-content: center;
+    /* Centrar los elementos horizontalmente */
+    align-items: center;
+    /* Centrar los elementos verticalmente */
+    max-width: 100%;
+    /* Ajustar el ancho máximo al 100% del contenedor padre */
+}
+
+
+.square {
+    background-size: cover;
+    background-position: center;
+    margin: 20px;
+    /* Margen inicial */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* Sombra */
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: transform 0.5s ease, margin 0.5s ease, background-image 1s ease;
+    width: 45%;
+    /* Establecer el ancho de los cuadrados al 45% del contenedor */
+    margin: 10px;
+    /* Ajustar el margen entre los cuadrados */
+
+}
+
+@media (max-width: 575px) {
+    .square {
+        width: 100%;
+        /* Cambiar el ancho de los cuadrados al 100% cuando la pantalla sea muy estrecha */
+        margin: 10px 0;
+        /* Ajustar el margen superior e inferior de los cuadrados */
+    }
+}
+
+#square1 {
+    width: 100px;
+    height: 100px;
+    background-image: url('imagenes/img1.PNG');
+}
+
+#square2 {
+    width: 200px;
+    height: 200px;
+    background-image: url('imagenes/img2.PNG');
+}
+
+#square3 {
+    width: 250px;
+    height: 250px;
+    background-image: url('imagenes/img3.PNG');
+}
+
+#square4 {
+    width: 200px;
+    height: 200px;
+    background-image: url('imagenes/img4.PNG');
+}
+
+#square5 {
+    width: 150px;
+    height: 150px;
+    background-image: url('imagenes/img5.PNG');
+}
+
+/* Cambios al hacer hover */
+#square1:hover {
+    transform: scale(1.3);
+    margin-left: 30px;
+    margin-right: 30px;
+    /* Margen aumentado */
+    background-image: url('imagenes/aimg1.PNG');
+    /* Cambio de imagen al hacer hover */
+}
+
+/* Cambios al hacer hover */
+#square2:hover {
+    transform: scale(1.3);
+    margin-left: 30px;
+    margin-right: 30px;
+    /* Margen aumentado */
+    background-image: url('imagenes/aimg2.PNG');
+    /* Cambio de imagen al hacer hover */
+}
+
+/* Cambios al hacer hover */
+#square3:hover {
+    transform: scale(1.3);
+    margin-left: 30px;
+    margin-right: 30px;
+    /* Margen aumentado */
+    background-image: url('imagenes/aimg3.PNG');
+    /* Cambio de imagen al hacer hover */
+}
+
+/* Cambios al hacer hover */
+#square4:hover {
+    transform: scale(1.3);
+    margin-left: 30px;
+    margin-right: 30px;
+    /* Margen aumentado */
+    background-image: url('imagenes/aimg4.PNG');
+    /* Cambio de imagen al hacer hover */
+}
+
+/* Cambios al hacer hover */
+#square5:hover {
+    transform: scale(1.3);
+    margin-left: 30px;
+    margin-right: 30px;
+    /* Margen aumentado */
+    background-image: url('imagenes/aimg5.PNG');
+    /* Cambio de imagen al hacer hover */
+}
+
+#cuadrado {
+    padding-bottom: 20px;
+    max-height: 300px;
+    margin-bottom: 40px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.3em;
+        /* Reducir el tamaño de fuente para pantallas medianas */
+    }
+}
+
+/* Media query para pantallas aún más pequeñas */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 0.9em;
+        /* Reducir aún más el tamaño de fuente para pantallas pequeñas */
+    }
+}
+
+h2.texto2 {
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    z-index: 2;
+    text-align: center;
+    box-sizing: border-box;
+    /* Para incluir el padding y el borde en el ancho total */
+}
+
+@media (max-width: 768px) {
+    h2.texto2 {
+        font-size: 1em;
+        /* Ajusta el tamaño de fuente para pantallas más pequeñas si es necesario */
+        bottom: 60px;
+        /* Ajusta la distancia desde abajo para pantallas más pequeñas si es necesario */
+    }
+}
