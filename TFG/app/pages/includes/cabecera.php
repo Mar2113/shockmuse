@@ -97,7 +97,7 @@
                     <li><a href="<?= ROOT ?>artistas">Artistas</a></li>
                     <li><a href="<?= ROOT ?>knowus">Quienes somos</a></li>
                     <li><a href="<?= ROOT ?>contacto">Contacto</a></li>
-                    <li><a href="<?= ROOT ?>">Configuracion</a></li>
+                    <li><a href="<?= ROOT ?>includes/configuracion">Configuracion</a></li>
                     <li><a href="<?= ROOT ?>login"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
 
                 </ul>

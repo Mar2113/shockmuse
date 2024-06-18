@@ -176,6 +176,7 @@ header {
 	background-color: #c1c1c1;
 	color: #444;
 	font-family: 'CustomFont4';
+	cursor: pointer;
 }
 
 .submenu {

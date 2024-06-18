@@ -224,21 +224,22 @@ if (!function_exists('get_categories_artist')) {
             ";
             $categories = db_query($query, ['artist_id' => $artist_id]);
 
-            if (!empty($categories)) {
+            if ($categories && count($categories) > 0) {
                 $category_names = [];
                 foreach ($categories as $category) {
-                    $category_names[] = $category['category'];
+                    $category_names[] = $category['category']; // Solo agregar el nombre de la categoría
                 }
                 return implode(', ', $category_names); // Convertir el array en una cadena de texto
             } else {
-                return "Unknown";
+                return "#";
             }
         } catch (Exception $e) {
             error_handler($e);
-            return "Unknown";
+            return "Error al cargar los géneros";
         }
     }
 }
+
 
 
 

@@ -23,7 +23,9 @@ if (!isset($_SESSION['csrf_token'])) {
 }
 $csrf_token = $_SESSION['csrf_token'];
 
-require page('includes/cabecera-admin');
+if($_SERVER['REQUEST_METHOD'] !== 'POST'){
+    require page('includes/cabecera-admin');
+}
 ?>
 
 <section class="content-featured">
@@ -80,6 +82,7 @@ require page('includes/cabecera-admin');
                 db_query($query, $data);
                 message("Artista añadido correctamente", true, "success");
                 header("Location: " . ROOT . "admin/artistas");
+                // header("Location: " . ROOT . "admin/artistas");
             }
         } catch (Exception $e) {
             message("Error inesperado: " . $e->getMessage(), true, "error");

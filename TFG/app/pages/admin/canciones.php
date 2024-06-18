@@ -18,137 +18,139 @@ if (!isset($_SESSION['csrf_token'])) {
 }
 $csrf_token = $_SESSION['csrf_token'];
 
-if (!isset($_SESSION['USER']['id'])) {
-    // Manejar el error: la sesión no tiene un 'user_id'
-    var_dump($_SESSION);
-    die('Error: user_id no está definido en la sesión.');
-}
+// if (!isset($_SESSION['USER']['id'])) {
+//     // Manejar el error: la sesión no tiene un 'user_id'
+//     var_dump($_SESSION);
+//     die('Error: user_id no está definido en la sesión.');
+// }
 
 $user_id = $_SESSION['USER']['id'];
 
 try {
     require "../app/core/config.php";
     require "../app/core/functions.php";
-
-    require page('includes/cabecera-admin');
 } catch (Exception $e) {
     // Manejar cualquier excepción que pueda ocurrir durante la inclusión de archivos y la configuración inicial
     error_handler($e);
     die("Error durante la carga de archivos y configuración inicial: " . $e->getMessage());
 }
-?>
 
+if ($action == 'añadir') :
+    // Limpiar mensajes al cargar la página
+    message('', true);
 
-<section class="content-featured">
+    try {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Validar token CSRF
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                // csrf_error_handler();
+            }
 
-    <!-- ########################################       AÑADIR   -->
+            // Invalidar el token CSRF después de usarlo
+            unset($_SESSION['csrf_token']);
 
-    <?php if ($action == 'añadir') :
-        // Limpiar mensajes al cargar la página
-        message('', true);
+            // Función para generar un slug
+            function generate_slug($string)
+            {
+                $string = strtolower($string);
+                $string = preg_replace('/[^a-z0-9\s-]/', '', $string);
+                $string = preg_replace('/[\s-]+/', '-', $string);
+                return trim($string, '-');
+            }
 
-        try {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Validar token CSRF
-                if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-                    // csrf_error_handler();
+            // Obtener y sanitizar los datos del formulario
+            $title = sanitize_input($_POST['title']);
+            $slug = generate_slug($title); // Generar slug a partir del título
+            $genero_id = sanitize_input($_POST['genero']);
+            $artista_id = sanitize_input($_POST['artista']);
+            $date = date('Y-m-d H:i:s');
+            $views = 0;
+
+            // Verificar si se cargó una imagen
+            if (!empty($_FILES['image']['name'])) {
+                $folder = "uploads/";
+                if (!file_exists($folder)) {
+                    mkdir($folder, 0777, true);
+                    file_put_contents($folder . "index.php", "");
                 }
 
-                // Invalidar el token CSRF después de usarlo
-                unset($_SESSION['csrf_token']);
-
-                // Función para generar un slug
-                function generate_slug($string)
-                {
-                    $string = strtolower($string);
-                    $string = preg_replace('/[^a-z0-9\s-]/', '', $string);
-                    $string = preg_replace('/[\s-]+/', '-', $string);
-                    return trim($string, '-');
+                $allowed_image_types = ['image/jpeg', 'image/png'];
+                if ($_FILES['image']['error'] == 0 && in_array($_FILES['image']['type'], $allowed_image_types)) {
+                    $destination_image = $folder . $_FILES['image']['name'];
+                    move_uploaded_file($_FILES['image']['tmp_name'], $destination_image);
+                } else {
+                    message("Error: Imagen no válida. Tipos permitidos: " . implode(",", $allowed_image_types), true, "error");
+                    // header("Location: " . ROOT . "admin/canciones/añadir");
+                    // exit();
                 }
+            } else {
+                message("Error: Se requiere una imagen", true, "error");
+                header("Location: " . ROOT . "admin/canciones/añadir");
+                exit();
+            }
 
-                // Obtener y sanitizar los datos del formulario
-                $title = sanitize_input($_POST['title']);
-                $slug = generate_slug($title); // Generar slug a partir del título
-                $genero_id = sanitize_input($_POST['genero']);
-                $artista_id = sanitize_input($_POST['artista']);
-                $date = date('Y-m-d H:i:s');
-                $views = 0;
-
-                // Verificar si se cargó una imagen
-                if (!empty($_FILES['image']['name'])) {
+            // Verificar si se cargó un archivo de audio
+            if (!empty($_FILES['file']['name'])) {
+                $allowed_audio_types = ['audio/mpeg'];
+                if ($_FILES['file']['error'] == 0 && in_array($_FILES['file']['type'], $allowed_audio_types)) {
                     $folder = "uploads/";
                     if (!file_exists($folder)) {
                         mkdir($folder, 0777, true);
                         file_put_contents($folder . "index.php", "");
                     }
 
-                    $allowed_image_types = ['image/jpeg', 'image/png'];
-                    if ($_FILES['image']['error'] == 0 && in_array($_FILES['image']['type'], $allowed_image_types)) {
-                        $destination_image = $folder . $_FILES['image']['name'];
-                        move_uploaded_file($_FILES['image']['tmp_name'], $destination_image);
-                    } else {
-                        message("Error: Imagen no válida. Tipos permitidos: " . implode(",", $allowed_image_types), true, "error");
-                        // header("Location: " . ROOT . "admin/canciones/añadir");
-                        // exit();
-                    }
+                    $destination_file = $folder . $_FILES['file']['name'];
+                    move_uploaded_file($_FILES['file']['tmp_name'], $destination_file);
                 } else {
-                    message("Error: Se requiere una imagen", true, "error");
+                    message("Error: Archivo de audio no válido. Tipos permitidos: " . implode(",", $allowed_audio_types), true, "error");
                     header("Location: " . ROOT . "admin/canciones/añadir");
                     exit();
                 }
-
-                // Verificar si se cargó un archivo de audio
-                if (!empty($_FILES['file']['name'])) {
-                    $allowed_audio_types = ['audio/mpeg'];
-                    if ($_FILES['file']['error'] == 0 && in_array($_FILES['file']['type'], $allowed_audio_types)) {
-                        $folder = "uploads/";
-                        if (!file_exists($folder)) {
-                            mkdir($folder, 0777, true);
-                            file_put_contents($folder . "index.php", "");
-                        }
-
-                        $destination_file = $folder . $_FILES['file']['name'];
-                        move_uploaded_file($_FILES['file']['tmp_name'], $destination_file);
-                    } else {
-                        message("Error: Archivo de audio no válido. Tipos permitidos: " . implode(",", $allowed_audio_types), true, "error");
-                        header("Location: " . ROOT . "admin/canciones/añadir");
-                        exit();
-                    }
-                } else {
-                    message("Error: Se requiere un archivo de audio", true, "error");
-                    header("Location: " . ROOT . "admin/canciones/añadir");
-                    exit();
-                }
-
-                // Insertar los datos en la base de datos
-                $query = "INSERT INTO canciones (user_id, artist_id, image, category_id, date, views, file, slug, title) VALUES (:user_id, :artist_id, :image, :category_id, :date, :views, :file, :slug, :title)";
-                $data = [
-                    ':user_id' => $user_id,
-                    ':artist_id' => $artista_id,
-                    ':image' => $destination_image,
-                    ':category_id' => $genero_id,
-                    ':date' => $date,
-                    ':views' => $views,
-                    ':file' => $destination_file,
-                    ':slug' => $slug,
-                    ':title' => $title
-                ];
-                db_query($query, $data);
-                message("Canción creada correctamente", true, "success");
-                header("Location: " . ROOT . "admin/canciones");
-                // exit();
+            } else {
+                message("Error: Se requiere un archivo de audio", true, "error");
+                header("Location: " . ROOT . "admin/canciones/añadir");
+                exit();
             }
 
-            // Obtener lista de géneros y artistas desde la base de datos
-            $query_generos = "SELECT * FROM categorias";
-            $generos = db_query($query_generos);
-
-            $query_artistas = "SELECT * FROM artistas";
-            $artistas = db_query($query_artistas);
-        } catch (Exception $e) {
-            message("Error inesperado: " . $e->getMessage(), true, "error");
+            // Insertar los datos en la base de datos
+            $query = "INSERT INTO canciones (user_id, artist_id, image, category_id, date, views, file, slug, title) VALUES (:user_id, :artist_id, :image, :category_id, :date, :views, :file, :slug, :title)";
+            $data = [
+                ':user_id' => $user_id,
+                ':artist_id' => $artista_id,
+                ':image' => $destination_image,
+                ':category_id' => $genero_id,
+                ':date' => $date,
+                ':views' => $views,
+                ':file' => $destination_file,
+                ':slug' => $slug,
+                ':title' => $title
+            ];
+            db_query($query, $data);
+            message("Canción creada correctamente", true, "success");
+            header("Location: " . ROOT . "admin/canciones");
+            // exit();
+        } else {
+            require page('includes/cabecera-admin');
         }
-    ?>
+
+        // Obtener lista de géneros y artistas desde la base de datos
+        $query_generos = "SELECT * FROM categorias";
+        $generos = db_query($query_generos);
+
+        $query_artistas = "SELECT * FROM artistas";
+        $artistas = db_query($query_artistas);
+    } catch (Exception $e) {
+        message("Error inesperado: " . $e->getMessage(), true, "error");
+    }
+
+
+?>
+
+    <section class="content-featured">
+
+        <!-- ########################################       AÑADIR   -->
+
+
 
         <div class="contenedorFormulario">
             <h2>Añadir Nueva Canción</h2>
@@ -208,6 +210,7 @@ try {
                     .replace(/-+$/, ''); // Eliminar - al final
             }
         </script>
+
 
         <?php
     elseif ($action == 'editar') :
@@ -269,6 +272,8 @@ try {
                     error_handler($e);
                     message("Error: " . $e->getMessage(), true, "error");
                 }
+            }  else {
+                require page('includes/cabecera-admin');
             }
         } catch (Exception $e) {
             // Manejar cualquier excepción que pueda ocurrir durante la obtención de datos preliminares
@@ -396,8 +401,10 @@ try {
                 db_query($query, $data);
 
                 // Redireccionar a la página de administración de canciones después de borrar
-                header("Location: " . ROOT . "admin/canciones");
+                header("Location: " . ROOT . "admin/canciones", true, 0);
                 exit();
+            } else {
+                require page('includes/cabecera-admin');
             }
         } catch (Exception $e) {
             // Manejar cualquier excepción que pueda ocurrir durante el proceso de borrado
@@ -433,6 +440,7 @@ try {
 
 
     <?php else :
+        require page('includes/cabecera-admin');
         try {
             $query = "SELECT * FROM canciones ORDER BY id DESC";
             $rows = db_query($query);
@@ -488,6 +496,6 @@ try {
             </div>
         </div>
     <?php endif; ?>
-</section>
+    </section>
 
-<?php require page('includes/pie-admin'); ?>
+    <?php require page('includes/pie-admin'); ?>

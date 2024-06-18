@@ -28,11 +28,11 @@
         <div class="breadcrumbHeader">SHOCKMUSE - ADMIN</div>
         <div class="search-container">
             <!-- Campo de búsqueda -->
-            <input type="text" placeholder="Buscar...">
+            <!-- <input type="text" placeholder="Buscar..."> -->
             <!-- Icono de búsqueda -->
-            <div class="search-icon">
+            <!-- <div class="search-icon">
                 <i class="fas fa-search fa-lg"></i>
-            </div>
+            </div> -->
         </div>
     </header>
     <?php if ($msg = message()) : ?>
@@ -47,37 +47,42 @@
                 <ul class="menu-item">
                     <li><a href="<?= ROOT ?>admin/principal">Principal</a></li>
                     <li class="menu-item-with-submenu">
-                        <a href="#">Canciones</a>
+                        <a>Canciones</a>
                         <ul class="submenu">
                             <li class="submenu-item"><a href="<?= ROOT ?>admin/canciones">Ver Lista</a></li>
                             <li class="submenu-item"><a href="<?= ROOT ?>admin/canciones/añadir">Añadir</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-with-submenu">
-                        <a href="#">Generos</a>
+                        <a>Generos</a>
                         <ul class="submenu">
                             <li class="submenu-item"><a href="<?= ROOT ?>admin/generos">Ver Lista</a></li>
                             <li class="submenu-item"><a href="<?= ROOT ?>admin/generos/añadir">Añadir</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-with-submenu">
-                        <a href="#">Usuarios</a>
+                        <a>Usuarios</a>
                         <ul class="submenu">
                             <li class="submenu-item"><a href="<?= ROOT ?>admin/usuarios">Ver Lista</a></li>
                             <li class="submenu-item"><a href="<?= ROOT ?>admin/usuarios/añadir">Añadir</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-with-submenu">
-                        <a href="#">Artistas</a>
+                        <a>Artistas</a>
                         <ul class="submenu">
                             <li class="submenu-item"><a href="<?= ROOT ?>admin/artistas">Ver Lista</a></li>
                             <li class="submenu-item"><a href="<?= ROOT ?>admin/artistas/añadir">Añadir</a></li>
                         </ul>
                     </li>
-                    <li><a href="<?= ROOT ?>admin/listas">Albumes</a></li>
+                    <li class="menu-item-with-submenu">
+                        <a>Listas</a>
+                        <ul class="submenu">
+                            <li class="submenu-item"><a href="<?= ROOT ?>admin/listas">Ver Lista</a></li>
+                            <li class="submenu-item"><a href="<?= ROOT ?>admin/listas/añadir">Añadir</a></li>
+                        </ul>
+                    </li>
                     <li><a href="<?= ROOT ?>admin/configuracion">Configuracion</a></li>
                     <li><a href="<?= ROOT ?>login"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
-
                 </ul>
             </div>
         </div>

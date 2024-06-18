@@ -38,7 +38,7 @@ switch ($error_code) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,7 +94,7 @@ switch ($error_code) {
         <h2><?= htmlspecialchars($error_description) ?></h2>
         <p><?= htmlspecialchars($error_message) ?></p>
         <p>Excepción: <span id="exception"><?= htmlspecialchars($exception_message) ?></span></p>
-        <p><a href="<?= ROOT ?>">Volver a la página principal</a> o <a href="<?= ROOT ?>search">buscar otra página</a>.</p>
+        <p><a href="javascript:history.back()">volver a la página anterior</a>.</p>
     </div>
     <script>
     </script>

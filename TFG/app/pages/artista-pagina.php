@@ -7,7 +7,7 @@
         <div class="col-md-8">
             <h2 class="card-title"><?= esc($row['name']) ?></h2>
             <div class="card-subtitle mb-3">
-                <strong>#:</strong> <?= esc(get_categories_artist($row['user_id'])) ?> <!-- Assuming get_artist_genres is a function that fetches the artist's genres -->
+                <strong>#:</strong> <?= esc(get_categories_artist($row['id'])) ?> <!-- Assuming get_artist_genres is a function that fetches the artist's genres -->
             </div>
             <div class="card-content mb-3">
                 <p><?= esc($row['bio']) ?></p>

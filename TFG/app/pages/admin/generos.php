@@ -23,7 +23,10 @@ if (!isset($_SESSION['csrf_token'])) {
 }
 $csrf_token = $_SESSION['csrf_token'];
 
-require page('includes/cabecera-admin');
+if($_SERVER['REQUEST_METHOD'] !== 'POST'){
+    require page('includes/cabecera-admin');
+}
+
 ?>
 
 <section class="content-featured">
@@ -60,7 +63,6 @@ require page('includes/cabecera-admin');
                         db_query($query, $data);
                         message("Categoría creada correctamente", true, "success");
                         header("Location: " . ROOT . "admin/generos");
-                        exit();
                     } catch (PDOException $e) {
                         message("Error al insertar datos: " . $e->getMessage(), true, "error");
                     }

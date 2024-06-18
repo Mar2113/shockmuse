@@ -22,7 +22,9 @@ function csrf_error_handler()
 $csrf_token = bin2hex(random_bytes(32));
 $_SESSION['csrf_token'] = $csrf_token;
 
-require page('includes/cabecera-admin');
+if($_SERVER['REQUEST_METHOD'] !== 'POST'){
+    require page('includes/cabecera-admin');
+}
 ?>
 
 <section class="content-featured">
@@ -36,9 +38,9 @@ require page('includes/cabecera-admin');
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Validar token CSRF
-                if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-                    csrf_error_handler();
-                }
+                // if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                //     csrf_error_handler();
+                // }
 
                 // Obtener y sanitizar los datos del formulario
                 $username = sanitize_input($_POST['username']);
@@ -66,11 +68,9 @@ require page('includes/cabecera-admin');
 
                                     if ($email_exists) {
                                         // Ejemplo de uso
-                                        $message = "El correo electrónico ya está en uso. ¿Desea recuperar la cuenta antigua o crear una nueva?";
-                                        $yes_action = 'console.log("Recuperar cuenta antigua");'; // Acción para Sí
-                                        $no_action = 'console.log("Crear nueva cuenta");'; // Acción para No
-                                        $confirmation_dialog = show_confirmation_dialog($message, $yes_action, $no_action);
-                                        echo $confirmation_dialog;
+                                        $message = "El correo electrónico ya está en uso.";
+                                        message("Error al insertar datos: " . $message, true, "error");
+                                        header("Location: " . ROOT . "admin/usuarios/añadir");
                                     } else {
                                         // Insertar los datos en la base de datos
                                         $query = "INSERT INTO usuarios (username, email, role, password, date) VALUES (:username, :email, :role, :password, :date)";
@@ -83,6 +83,7 @@ require page('includes/cabecera-admin');
                                         ];
                                         db_query($query, $data);
                                         message("Usuario creado correctamente", true, "success");
+                                        header("Location: " . ROOT . "admin/usuarios");
                                     }
                                 } catch (PDOException $e) {
                                     message("Error al insertar datos: " . $e->getMessage(), true, "error");
@@ -156,10 +157,12 @@ require page('includes/cabecera-admin');
 
                 db_query($query, $data);
                 message("Cambios realizados con éxito.", true, "success");
+                header("Location: " . ROOT . "admin/usuarios");
             } catch (Exception $e) {
                 // Manejar cualquier excepción que pueda ocurrir durante la actualización de datos
                 error_handler($e);
                 message("Error: " . $e->getMessage(), true, "error");
+                header("Location: " . ROOT . "admin/usuarios");
             }
         }
 
@@ -235,13 +238,8 @@ require page('includes/cabecera-admin');
                     $delete_query = "DELETE FROM usuarios WHERE id = :user_id";
                     $delete_data = [':user_id' => $user_id_to_delete];
                     db_query($delete_query, $delete_data);
-
-                    // Mostrar mensaje de éxito
                     message("Usuario \"$username\" eliminado correctamente", true, "success");
-
-                    // Redireccionar a /usuarios
                     header("Location: " . ROOT . "admin/usuarios");
-                    exit();
                 }
         ?>
                 <div class="form-container">
@@ -250,7 +248,7 @@ require page('includes/cabecera-admin');
                     <p>Correo: <?= $email ?></p>
                     <p>Rol: <?= $role ?></p>
                     <div class="button-group-adduser">
-                        <form class="form-deleteUser" ="POST">
+                        <form class="form-deleteUser" method="POST">
                             <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
                             <input type="hidden" name="user_id" value="<?= $user_id ?>">
                             <button type="submit" name="delete_user" class="buttonAddUser">Borrar</button>
