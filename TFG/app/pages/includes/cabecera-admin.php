@@ -74,13 +74,13 @@
                             <li class="submenu-item"><a href="<?= ROOT ?>admin/artistas/añadir">Añadir</a></li>
                         </ul>
                     </li>
-                    <li class="menu-item-with-submenu">
+                    <!-- <li class="menu-item-with-submenu">
                         <a>Listas</a>
                         <ul class="submenu">
                             <li class="submenu-item"><a href="<?= ROOT ?>admin/listas">Ver Lista</a></li>
                             <li class="submenu-item"><a href="<?= ROOT ?>admin/listas/añadir">Añadir</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li><a href="<?= ROOT ?>admin/configuracion">Configuracion</a></li>
                     <li><a href="<?= ROOT ?>login"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
                 </ul>
