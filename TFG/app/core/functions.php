@@ -195,6 +195,7 @@ if (!function_exists('get_category')) {
 if (!function_exists('get_artist')) {
     function get_artist($id)
     {
+        var_dump($id);
         try {
             $query = "SELECT name FROM artistas WHERE id = :id LIMIT 1";
             $row = db_query_one($query, ['id' => $id]);

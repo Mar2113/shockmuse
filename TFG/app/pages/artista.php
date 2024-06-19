@@ -1,7 +1,15 @@
 <?php require page('includes/cabecera')?>
 	
 
-	<center><div class="section-title">Cantante:</div></center>
+	<!-- <center><div class="section-title"
+	style="
+	
+	width: 100%;
+	padding: 10px;
+	font-size: 30px;
+	"
+	
+	>Cantante:</div></center> -->
 
     <section class="content-featured">
 		

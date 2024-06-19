@@ -6,6 +6,7 @@ try {
     echo '<div class="alert alert-danger" role="alert">Error: ' . $e->getMessage() . '</div>';
     message("Error: Hubo un problema al actualizar las vistas.", true, "error");
 }
+// var_dump($row);
 ?>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

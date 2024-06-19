@@ -1,5 +1,4 @@
-<!--start music card-->
-
+<!--start music -->
 <div class="music-card">
 	<div style="overflow: hidden;">
 		<a href="<?=ROOT?>cancion/<?=$row['slug']?>"><img src="<?= ROOT ?>/<?= $row['image'] ?>" class="img-fluid"></a>

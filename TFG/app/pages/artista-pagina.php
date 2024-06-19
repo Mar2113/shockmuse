@@ -19,6 +19,7 @@
         <h3>Canciones:</h3>
         <div class="row">
             <?php 
+            // var_dump($row);
                 $query = "SELECT * FROM canciones WHERE artist_id = :artist_id ORDER BY views DESC LIMIT 20";
                 $rows = db_query($query, ['artist_id' => $row['id']]);
                 // var_dump($rows);

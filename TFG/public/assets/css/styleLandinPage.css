@@ -230,7 +230,7 @@ aside {
 .login-auth-form {
     background-color: #fff;
     padding: 40px;
-    width: 300px;
+    width: 100%;
 }
 
 .form-group {
@@ -358,32 +358,32 @@ aside {
 }
 
 #square1 {
-    width: 100px;
-    height: 100px;
+    width: 20vh;
+    height: 20vh;
     background-image: url('imagenes/img1.PNG');
 }
 
 #square2 {
-    width: 200px;
-    height: 200px;
+    width: 30vh;
+    height: 30vh;
     background-image: url('imagenes/img2.PNG');
 }
 
 #square3 {
-    width: 250px;
-    height: 250px;
+    width: 40vh;
+    height: 40vh;
     background-image: url('imagenes/img3.PNG');
 }
 
 #square4 {
-    width: 200px;
-    height: 200px;
+    width: 30vh;
+    height: 30vh;
     background-image: url('imagenes/img4.PNG');
 }
 
 #square5 {
-    width: 150px;
-    height: 150px;
+    width: 20vh;
+    height: 20vh;
     background-image: url('imagenes/img5.PNG');
 }
 
@@ -448,6 +448,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 40vh;
 }
 
 /* Media query para pantallas más pequeñas */

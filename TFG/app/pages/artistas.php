@@ -1,6 +1,12 @@
 <?php require page('includes/cabecera')?>
 	
-	<div>Artistas:</div>
+	<div 
+	style="
+	    padding: 10px 10px 10px 70px;
+    width: 100%;
+    font-size: 30px;
+	"
+	>Artistas:</div>
 
     <section class="content-featured">
 		

@@ -289,6 +289,7 @@ footer {
     display: flex;
     flex-direction: column;
     color: white;
+	z-index: 2;
 }
 
 .footer-div {
@@ -307,8 +308,15 @@ footer {
 	cursor: pointer;
 }
 
-
-
+.music-card-full  .row{
+--bs-gutter-x: 1.5rem;
+--bs-gutter-y: 0;
+display: flex;
+flex-wrap: wrap;
+margin-top: calc(-1* var(--bs-gutter-y));
+margin-right: calc(-.5* var(--bs-gutter-x));
+margin-left: calc(-.5* var(--bs-gutter-x));
+}
 
 /* ################################################# */
 
@@ -550,6 +558,7 @@ form {
     border-radius: 5px;
     font-size: 16px;
     text-align: center;
+	z-index: 1;
 }
 
 .alert-success {
