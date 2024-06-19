@@ -182,7 +182,7 @@ if (!function_exists('get_category')) {
             if (!empty($row['category'])) {
                 return $row['category'];
             } else {
-                return "Unknown";
+                return "¿Sin género?";
             }
         } catch (Exception $e) {
             error_handler($e);
@@ -195,7 +195,7 @@ if (!function_exists('get_category')) {
 if (!function_exists('get_artist')) {
     function get_artist($id)
     {
-        var_dump($id);
+        // var_dump($id);
         try {
             $query = "SELECT name FROM artistas WHERE id = :id LIMIT 1";
             $row = db_query_one($query, ['id' => $id]);
@@ -203,7 +203,7 @@ if (!function_exists('get_artist')) {
             if (!empty($row['name'])) {
                 return $row['name'];
             } else {
-                return "Unknown";
+                return "¿Sin artista?";
             }
         } catch (Exception $e) {
             error_handler($e);

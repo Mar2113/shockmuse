@@ -32,7 +32,7 @@ require page('includes/cabecera')
 
 
 <section>
-    <img class="imagenFondo" src="<?= ROOT ?>/assets/images/music_AdobeStock_329594746.original.jpg">
+    <!-- <img class="imagenFondo" src="<?= ROOT ?>/assets/images/music_AdobeStock_329594746.original.jpg"> -->
 </section>
 
 <!-- Seccion Featured -->

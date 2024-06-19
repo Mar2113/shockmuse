@@ -25,32 +25,13 @@
         </div>
         <!-- Agregar el breadcrumb -->
         <div class="breadcrumbHeader">SHOCKMUSE</div>
-        <div class="search-container">
-            <form class="form-buscador" method="GET" action="<?= ROOT ?>buscador" style="    
-        height: 0px;
-        margin-bottom: 50px;
-        background-color: #444;
-">
-                <div class="form-group" style="display: flex;">
-                    <input class="form-control" type="text" placeholder="Buscar . . ." name="query" id="search-input">
-                    <button class="btn" id="search-icon" type="submit">Search</button>
-                </div>
+        <div class="custom-search-container">
+            <form class="custom-form-buscador" method="GET" action="<?= ROOT ?>buscador">
+                <input class="custom-search-input" type="text" placeholder="Buscar . . ." name="query" id="search-input">
+                <button class="custom-search-icon" type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
     </header>
-
-    <!-- <form action/search">
-				<div class="form-group">
-					<input class="form-control" type="text" placeholder="Search for music" name="find">
-					<button class="btn">Search</button>
-				</div>
-			</form> -->
-
-    <!-- <div class="header-right">
-            <a href="landingPage.html" title="Cerrar sesión" tabindex="0">
-                <i alt="Cerrar sesión" class="material-symbols-outlined" style="color:#FFFFFF;">logout</i>
-            </a>
-        </div> -->
 
     <sidebar id="sidebar">
         <div class="main-nav">

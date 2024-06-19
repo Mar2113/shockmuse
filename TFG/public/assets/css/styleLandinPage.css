@@ -54,6 +54,10 @@ header {
         width: 200px;
         /* Ancho más estrecho para pantallas medianas */
     }
+
+    .header-left {
+        font-size: 15px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -448,7 +452,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 40vh;
+    height: 50vh;
 }
 
 /* Media query para pantallas más pequeñas */
